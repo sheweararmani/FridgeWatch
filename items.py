@@ -43,3 +43,39 @@ def start(ID):
                 print(ListboxList)
 
     return ListboxList
+
+#New code below this 
+ITEMS = "ProductDatabase.csv"
+USERS = "users.csv"
+
+USER_ID = 0 # This will depend on the USER!!! CHANGE ME IN THE GUI
+user_items = []
+
+def delete_item(item_id):
+
+    data = []
+
+    # open and reader every row of the csv file
+    with open(USERS,newline="") as csvfile:
+        item_reader = csv.reader(csvfile, delimiter=',')
+        for i, row in enumerate(item_reader):
+            print(row)
+                
+            # skip the column headers
+            if i == 0:
+                data.append(row)
+                continue
+
+            # skip the data to be deleted
+            if int(row[0]) == int(USER_ID) and int(row[1]) == int(item_id):
+                continue
+
+            # append the data to keeep
+            data.append(row)
+
+    # write the data to the USERS csv file
+    with open(USERS, 'w', newline="") as f:
+        writer = csv.writer(f)
+        for row in data:
+            writer.writerow(row)
+##New Code Above This
