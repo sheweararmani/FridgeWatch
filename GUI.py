@@ -22,7 +22,7 @@ def CheckExpiry():
     ListboxList = items.start(IDEntry.get())
     print(ListboxList)
     listbox = ListBox(CheckExpiryWindow,items = ListboxList,width = 48,height = 18)
-
+    Delete = PushButton(CheckExpiryWindow,width = 54,command = RecipesFunction, text = "DELETE ITEM",grid = [1,4,2,1],pady = 14)
 
 
 
