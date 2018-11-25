@@ -3,6 +3,9 @@ from guizero import App, Text, PushButton, Window, Picture, TextBox, error, List
 global ID
 global ListboxList
 ListboxList = []
+global EatenList
+EatenList = []
+
 def EatenFood():
     print("EatenFood")
 
@@ -12,17 +15,26 @@ def EatenFood():
 def RecipesFunction():
     print("Recipes")
 
-
+#python C:\Users\acryl\Desktop\CompSci\repos\FridgeWatch\GUI.py
 
     
 def CheckExpiry():
+    def deletebuttoncommand():
+        EatenList.append(listbox.value)
+        ListboxList.remove(listbox.value)
+        #listbox.hide(ListboxList)
+        #listbox.show(ListboxList)
+        print("The eaten list:")
+        print(EatenList)
     CheckExpiryWindow = Window(app,width = 450,height = 550, title = "Fridge Contents",bg = "#9cdaf6")
     CheckExpiryWindow.show(wait= True)
     picture = Picture(CheckExpiryWindow, image  = "ExtraSmall.png")
     ListboxList = items.start(IDEntry.get())
-    print(ListboxList)
+
+
     listbox = ListBox(CheckExpiryWindow,items = ListboxList,width = 48,height = 18)
-    Delete = PushButton(CheckExpiryWindow,width = 54,command = RecipesFunction, text = "DELETE ITEM",grid = [1,4,2,1],pady = 14)
+    #items.delete_item(IDEntry.get()
+    Delete = PushButton(CheckExpiryWindow,width = 54,command = deletebuttoncommand, text = "DELETE ITEM",grid = [1,4,2,1],pady = 14)
 
 
 
@@ -35,7 +47,6 @@ def DisplayMain():
     Mainwindow.show()
     Text(Mainwindow, text = "    ",grid = [0,0])
     picture = Picture(Mainwindow, image  = "ExtraSmall.png",grid = [1,0,2,1])
-    
     Text(Mainwindow, text = "Welcome, Please Choose One Of The Following Options",grid = [1,2,2,1])
     Text(Mainwindow,text = "", grid = [0,3],size =4)
     CheckExpireButton = PushButton(Mainwindow,width = 54,command = CheckExpiry, text = "Check Expiry Dates",grid = [1,4,2,1],pady = 14)
